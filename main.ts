@@ -306,18 +306,22 @@ class Piece {
 ///// CONTROLS //////////////////////////////////////////////
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     currentPiece.rotCW()
+    music.playTone(Note.A5, BeatFraction.Whole)
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     currentPiece.rotCCW()
+    music.playTone(Note.B5, BeatFraction.Whole)
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     currentPiece.moveLeft()
+    music.playTone(Note.C, BeatFraction.Eighth)
 })
 controller.left.onEvent(ControllerButtonEvent.Repeated, function () {
     currentPiece.moveLeft()
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     currentPiece.moveRight()
+    music.playTone(Note.C, BeatFraction.Eighth)
 })
 controller.right.onEvent(ControllerButtonEvent.Repeated, function () {
     currentPiece.moveRight()
@@ -357,6 +361,10 @@ let bgPicture: Image = null
 let speed: number = 1000
 let level: number = 0
 let nbLines: number = 0
+let bestScore: number = 0
+if (settings.exists('Score')) {
+    bestScore = settings.readNumber('Score')
+}
 
 bgPicture = img`
     2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 7 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 7 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
@@ -486,6 +494,9 @@ bgPicture.print("Niveau", 90, 20, 15)
 bgPicture.print(level.toString(), 130, 20, 15)
 bgPicture.print("Lignes", 90, 30, 15)
 bgPicture.print(nbLines.toString(), 130, 30, 15)
+bgPicture.print("Score", 90, 40, 15)
+bgPicture.print(bestScore.toString(), 130, 40, 15)
+
 
 // Create the grid with blank squares
 for (let r = 0; r <= ROW; r++) {
@@ -513,6 +524,9 @@ game.onUpdate(function () {
                 levelUp()
                 newPiece()
             } else {
+                if (bestScore < info.score()) {
+                    settings.writeNumber('Score', info.score())
+                }
                 game.over(false)
             }
         } else {
