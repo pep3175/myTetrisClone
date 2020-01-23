@@ -1,22 +1,130 @@
-// Standard palette
-/*enum Color {
-    Transparent, //0
-    100820, //1
-    511e43, //2
-    aeb5bd, //3
-    4d80c9, //4
-    054494, //5
-    ffa9a9, //6
-    eb6c82, //7
-    e93841, //8
-    ffe947, //9
-    f1892d, //10
-    823e2c, //11
-    5ae150, //12
-    1e8a4c, //13
-    7d3ebf, //14
-    ffd19d //15
-}   // enum Color*/
+///// INTRO //////////////////////////////////////////////
+music.setVolume(32)
+scene.setBackgroundImage(img`
+    6 6 6 b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 6 6 6
+    6 6 6 b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 6 6 6
+    6 6 6 b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 6 6 6
+    6 6 6 b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 6 6 6
+    6 6 6 b b b b 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a f f f f f f f a f f f f f f f f a f f f f f f f a a f f f f f f f f a f f f f f f f f f f f a a f f f f f f f a f f f f f f f f a f f f f f f f a a f f f f f f f f a f f f f f a a a a a a a a a f f f f f f f f a a a a f f a f f f f f f f f f f f a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a f f f f f f f a f f f f f f f f a f f f f f f f a a f f f f f f f f a a f f f f f f f f f f a a f f f f f f f a f f f f f f f f a f f f f f f f a a f f f f f f f f a f f f f f f f a a a a a a a f f f f f f f f a a a f f f a f f f f f f f f f f f a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a f f f f f f a a f f f f f f f f a a f f f f f f a a f f f f f f f f a a a f f f f f f f f f a a f f f f f f a a f f f f f f f f a a f f f f f f a a f f f f f f f f a f f f f f f f f a a a a a a f f f f f f f f a a f f f f a a f f f f f f f f f f a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a f f f f f a a a f f f f f f f f a a a f f f f f a a f f f f f f f f a a a a f f f f f f f f a a f f f f f a a a f f f f f f f f a a a f f f f f a a f f f f f f f f a f f f f f f f f f a a a a a f f f f f f f f a a f f f f f a a f f f f f f f f f a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a f f f f f a a a f f f f f f f f a a a f f f f f a a f f f f f f f f a a a a a f f f f f f f a a f f f f f a a a f f f f f f f f a a a f f f f f a a f f f f f f f f a f f f f f f f f f a a a a a f f f f f f f f a f f f f f f a a a f f f f f f f f a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a f f f f a a a a f f f f f f f f a a a a f f f f a a f f f f f f f f a a a a a a f f f f f f a a f f f f a a a a f f f f f f f f a a a a f f f f a a f f f f f f f f a f f f f f f f f f f a a a a f f f f f f f f a f f f f f f f a a f f f f f f f f a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a f f f f a a a a f f f f f f f f a a a a f f f f a a f f f f f f f f a a a a a a a f f f f f a a f f f f a a a a f f f f f f f f a a a a f f f f a a f f f f f f f f a f f f f f f f f f f a a a a f f f f f f f f a f f f f f f f f a a f f f f f f f a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a f f f a a a a a f f f f f f f f a a a a a f f f a a f f f f f f f f a a a a a a a a f f f f a a f f f a a a a a f f f f f f f f a a a a a f f f a a f f f f f f f f a f f f f f f f f f f a a a a f f f f f f f f a f f f f f f f f a a a f f f f f f a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a f f f a a a a a f f f f f f f f a a a a a f f f a a f f f f f f f f a a a a a a a a a f f f a a f f f a a a a a f f f f f f f f a a a a a f f f a a f f f f f f f f a f f f f f f f f f f a a a a f f f f f f f f a f f f f f f f f f a a f f f f f f a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a f f a a a a a a f f f f f f f f a a a a a a f f a a f f f f f f f f a a a a a a a f a a f f a a f f a a a a a a f f f f f f f f a a a a a a f f a a f f f f f f f f a f f f f f f f f f f a a a a f f f f f f f f a a f f f f f f f f f a a f f f f f a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a f f a a a a a a f f f f f f f f a a a a a a f f a a f f f f f f f f a a a a a a f f a a a f a a f f a a a a a a f f f f f f f f a a a a a a f f a a f f f f f f f f a f f f f f f f f f f a a a a f f f f f f f f a a f f f f f f f f f a a a f f f f a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a f a a a a a a a f f f f f f f f a a a a a a a f a a f f f f f f f f a a a a a f f f a a a a a a f a a a a a a a f f f f f f f f a a a a a a a f a a f f f f f f f f a f f f f f f f f f a a a a a f f f f f f f f a a f f f f f f f f f f a a a f f f a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a a a a f f f f a a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a f f f f f f f f f a a a a a f f f f f f f f a a a f f f f f f f f f f a a f f f a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a a a f f f f f a a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a f f f f f f f f a a a a a a f f f f f f f f a a a f f f f f f f f f f f a a f f a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a a f f f f f f a a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a f f f f f f f a a a a a a a f f f f f f f f a a a a f f f f f f f f f f a a a f a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a f f f f f f f a a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a f f f f a a a a a a a a a a f f f f f f f f a a a a a f f f f f f f f f f a a a a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a a f f f f f f a a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a f f a a a a a a a a a a a a f f f f f f f f a a f a a a f f f f f f f f f f a a a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a a a f f f f f a a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a f f a a a a a a a a a a a a f f f f f f f f a a f f a a f f f f f f f f f f f a a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a a a a f f f f a a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a f f f a a a a a a a a a a a f f f f f f f f a a f f f a a f f f f f f f f f f f a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a a a a a f f f a a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a f f f a a a a a a a a a a a f f f f f f f f a a f f f a a a f f f f f f f f f f a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a a a a a a f f a a a f a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a f f f f a a a a a a a a a a f f f f f f f f a a f f f f a a f f f f f f f f f f f a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a a a a a a a f a a f f a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a f f f f f a a a a a a a a a f f f f f f f f a a f f f f f a a f f f f f f f f f f a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a a a a a a a a a f f f a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a f f f f f f a a a a a a a a f f f f f f f f a a f f f f f a a a f f f f f f f f f f a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a a a a a a a a f f f f a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a f f f f f f a a a a a a a a f f f f f f f f a a f f f f f f a a a f f f f f f f f f a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a a a a a a a f f f f f a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a f f f f f f f a a a a a a a f f f f f f f f a a f f f f f f f a a f f f f f f f f f a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a a a a a a f f f f f f a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a f f f f f f f f a a a a a a f f f f f f f f a a f f f f f f f f a a f f f f f f f f a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a a a a a f f f f f f f a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a f f f f f f f f f a a a a a f f f f f f f f a a f f f f f f f f a a a f f f f f f f a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a f f f f f f f f f a a a a a f f f f f f f f a a f f f f f f f f f a a f f f f f f a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a a a f f f f f f f f f a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a f f f f f f f f f f a a a a f f f f f f f f a a f f f f f f f f f f a a f f f f f a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a a f f f f f f f f f f a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a f f f f f f f f f f f a a a f f f f f f f f a a f f f f f f f f f f f a f f f f a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a f f f f f f f f f f f a a a a a a a a a a f f f f f f f f a a a a a a a a a a f f f f f f f f a f f f f f f f f f f f f a a f f f f f f f f a a f f f f f f f f f f f a f f f a a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 5 b b b b 6 6 6
+    6 6 6 b b b b 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 b b b b 6 6 6
+    6 6 6 b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 6 6 6
+    6 6 6 b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 6 6 6
+    6 6 6 b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 6 6 6
+    6 6 6 b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 3 3 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 3 3 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 6 1 3 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 1 1 3 3 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 1 1 3 3 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 6 3 3 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 d d d d 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 d d d d d d d d 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 d d d d d d d d d d 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 d 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 3 7 7 7 7 7 7 7 7 7 7 7 6 6 7 7 7 7 7 7 7 7 7 7 3 3 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 d d d d d d d d d d d d 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 d 3 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 d 7 7 7 7 7 7 7 7 7 7 7 6 6 7 7 7 7 7 7 7 7 7 7 d d 3 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 d d d d d d d d d d d d 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 6 7 7 7 7 7 7 7 7 7 7 3 3 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 d d d d d d d d d d d d d d 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 d d d d d d d d d d d d d d 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 d d d d d d d d d d d d d d 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 d d d d d d d d d d d d 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 1 3 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 d d d d d d d d d d d d 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 3 7 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 3 7 7 7 7 7 7 7 7 7 7 7 7 7 7 d d d d d d d d d d 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 3 3 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 3 7 7 7 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 d 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 d d d d d d d d 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 d d 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 3 a 4 4 a 7 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 d d d d 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 3 3 a 4 4 a 4 7 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 3 f a a 4 4 a 4 a 7 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 3 f a a 4 4 a a 4 a a 7 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 3 f a a 4 4 4 a a 4 4 a 4 7 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 3 3 f a a 4 4 4 a a 4 4 a 4 4 7 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 3 3 f a a 4 4 4 a a a 4 4 a a 4 4 7 6 7 7 7 7 7 7 7 7 7 7 7 7 7 6 6 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 3 3 f a a 4 4 4 4 a a 4 4 4 4 a a 4 7 7 6 7 7 7 7 7 7 7 7 7 7 7 6 3 3 6 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 3 3 f a a 4 4 4 4 4 a a 4 4 4 4 a a 4 4 7 7 6 7 7 7 7 7 7 7 7 7 7 6 3 3 6 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 3 3 f a a a 4 4 4 4 a a a 4 4 4 4 a a a 4 4 7 7 6 7 7 7 7 7 7 7 7 6 6 1 3 6 6 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 3 3 f a a a 4 4 4 4 4 a a a 4 4 4 4 4 a a a 4 4 7 7 6 7 7 7 7 7 7 7 6 1 1 3 3 6 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 3 f a a a a 4 4 4 4 a a a a 4 4 4 4 4 a a a 4 4 4 7 6 7 7 7 7 7 7 7 6 1 1 3 3 6 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 3 3 a a a a 4 4 4 4 4 a a a a 4 4 4 4 4 a a a a 4 4 7 7 6 7 7 7 7 7 7 6 6 3 3 6 6 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 7 7 7 7 7 7 7 7 7 7 7 6 3 f a a a a 4 4 4 4 4 a a a a 4 4 4 4 4 4 a a a 4 4 4 7 6 7 7 7 7 7 7 7 6 6 6 6 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 7 7 7 7 7 7 7 7 7 7 7 6 3 f a a a a 4 4 4 4 a a a a a 4 4 4 4 4 4 a a a a 4 4 7 6 7 7 7 7 7 7 7 7 6 6 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 3 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 7 7 7 7 7 7 7 7 7 7 6 3 3 f a a a a 4 4 4 4 a a a a a 4 4 4 4 4 4 a a a a a 4 4 7 6 7 7 7 7 7 7 7 6 6 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 d 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 7 7 7 7 7 7 7 7 7 7 6 3 3 f a a a a 4 4 4 4 a a a a a a 4 4 4 4 4 4 a a a a 4 4 7 6 7 7 7 7 7 7 7 6 6 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 6 6 7 7 7 7 7 7 7 7 7 6 3 3 f a a a a 4 4 4 4 a a a a a a 4 4 4 4 4 4 a a a a 4 4 7 6 7 7 7 7 7 7 7 6 6 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 7 7 7 7 7 7 7 7 6 6 6 7 7 7 7 7 7 7 7 7 6 3 3 f a a a a 4 4 4 4 a a a a a a a 4 4 4 4 4 a a a a 4 4 7 6 7 7 7 7 7 7 7 6 6 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 6 6 7 7 7 7 7 7 7 6 6 6 7 7 7 7 7 7 7 7 7 6 3 3 f a a a a 4 4 4 4 4 a a a a a a 4 4 4 4 4 a a a a 4 4 7 6 7 7 7 7 7 7 7 6 6 7 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 6 6 6 6 7 7 7 7 7 7 6 6 6 7 7 7 7 7 6 7 7 7 7 6 3 f a a a a a 4 4 4 4 a a a a a a 4 4 4 4 4 a a a 4 4 7 6 7 7 7 7 7 7 7 6 6 6 6 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 7 7 6 6 6 6 6 6 6 7 7 7 7 6 6 6 6 6 7 7 7 6 6 6 7 7 7 6 3 3 a a a a a 4 4 4 4 4 a a a a a a 4 4 4 4 a a a 4 4 7 6 7 7 7 7 7 7 7 6 3 7 6 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 7 7 6 6 6 6 6 6 6 7 7 7 7 6 6 6 6 6 7 7 7 6 6 6 7 7 7 7 6 3 f a a a a 4 4 4 4 4 a a a a a a 4 4 4 a a a 4 4 7 6 7 7 7 6 7 7 7 7 6 6 6 6 7 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 7 7 6 6 6 6 6 6 6 7 7 7 7 6 6 6 6 6 7 7 7 7 6 7 7 7 7 7 6 3 3 f f a a a 4 4 4 4 4 a a a a a 4 4 4 a a a 4 4 7 6 7 7 6 6 6 7 7 6 7 a 4 7 6 7 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 7 7 7 6 6 6 6 6 7 7 7 7 7 6 6 6 6 6 7 7 7 6 6 6 7 7 7 7 7 6 3 3 3 f a a a 4 4 4 4 4 a a a a a 4 4 a a 4 4 7 6 7 7 7 7 6 7 7 6 7 3 a 4 a 7 6 7 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 6 6 7 7 4 4 4 4 4 7 7 7 7 7 6 6 6 6 6 7 7 7 6 6 6 7 7 7 6 7 7 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 7 7 6 6 7 6 7 6 7 3 a a 4 a 7 7 6 7 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 6 6 7 7 4 4 4 4 4 7 7 7 6 6 6 6 6 6 6 6 7 7 6 6 6 7 7 6 6 6 7 7 6 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 6 4 6 6 4 6 7 7 7 6 6 7 6 6 7 3 4 a 4 4 a 4 7 7 6 7 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 6 6 7 7 6 6 6 6 6 7 7 7 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 7 6 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 6 4 6 6 4 6 6 6 6 6 6 6 6 7 3 4 a a 4 a a 4 4 7 7 6 7 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+    6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+`)
+introMusic()
+game.showLongText("Tetris pour les nostalgiques. Appuies sur A pour démarrer", DialogLayout.Bottom)
+///////////////////////////////////////////////////////////
 
 const ROW = 19    // Grid ..
 const COL = 9     // .. size
@@ -26,6 +134,9 @@ const BOARD = 2
 
 const PIECES = [I, J, L, O, S, T, Z]
 const COLOR = [8, 14, 12, 7, 4, 10, 9]
+
+const linePoints = 50
+const levelPoints = 200
 
 ///// FUNCTIONS //////////////////////////////////////////////
 // Display the minimal unit of a piece
@@ -76,11 +187,7 @@ function drawSquare(x: number, y: number, color: number) {
         bgPicture.drawLine(X, Y, X + 5, Y, Clight) //up
         bgPicture.drawLine(X, Y + 5, X + 5, Y + 5, Cdark) //down
         bgPicture.drawLine(X, Y + 1, X, Y + 4, Clight) //left up
-        //bgPicture.drawLine(X, Y + 3, X, Y + 4, Cdark) //left down
         bgPicture.drawLine(X + 5, Y + 1, X + 5, Y + 5, Cdark) //right up
-        //bgPicture.drawLine(X + 5, Y + 3, X + 5, Y + 4, Cdark) //right down
-
-        //bgPicture.fillRect(X+1, Y+1, 4, 4, color)
     }
 }
 // The grid is composed of 10x20 squares
@@ -106,6 +213,7 @@ function checkLine() {
             if (line == true) {
                 nbLines++
                 nbLinesCompleted++
+                music.playTone(Note.E, 50)
                 bgPicture.fillRect(130, 35, 20, 8, BOARD)
                 bgPicture.print(nbLines.toString(), 130, 35, 15)
                 for (let r = row; r >= 1; r--) {
@@ -118,17 +226,20 @@ function checkLine() {
             }
         }
     }
-    info.changeScoreBy(50*(Math.exp(nbLinesCompleted)-1))
+    info.changeScoreBy(linePoints*(Math.exp(nbLinesCompleted)-1))
     drawGrid()
 }
 // Level up
 function levelUp() {
     if (level < Math.floor(nbLines / 10)) {
         level++
+        music.playTone(Note.E, 50)
+        music.playTone(Note.F, 50)
+        music.playTone(Note.E, 50)
         bgPicture.fillRect(130, 20, 20, 8, BOARD)
         bgPicture.print(level.toString(), 130, 20, 15)
         speed = 1000 - (level * 100)
-        info.changeScoreBy(200 * level)
+        info.changeScoreBy(levelPoints * level)
     }
 }
 // Create a new piece
@@ -141,6 +252,32 @@ function newPiece() {
 
     nextPiece = new Piece()
     nextPiece.draw()
+}
+
+function introMusic() {
+    //E B C D C B A - A C E D C B - C D E C A A
+    music.setTempo(150)
+    music.playTone(Note.E5, music.beat(BeatFraction.Whole))
+    music.playTone(Note.B4, music.beat(BeatFraction.Half))
+    music.playTone(Note.C5, music.beat(BeatFraction.Half))
+    music.playTone(Note.D5, music.beat(BeatFraction.Whole))
+    music.playTone(Note.C5, music.beat(BeatFraction.Half))
+    music.playTone(Note.B4, music.beat(BeatFraction.Half))
+    music.playTone(Note.A4, music.beat(BeatFraction.Whole))
+
+    /*music.playTone(Note.A4, music.beat(BeatFraction.Half))
+    music.playTone(Note.C5, music.beat(BeatFraction.Half))
+    music.playTone(Note.E5, music.beat(BeatFraction.Whole))
+    music.playTone(Note.D5, music.beat(BeatFraction.Half))
+    music.playTone(Note.C5, music.beat(BeatFraction.Half))
+    music.playTone(Note.B4, music.beat(BeatFraction.Double))
+
+    music.playTone(Note.C5, music.beat(BeatFraction.Half))
+    music.playTone(Note.D5, music.beat(BeatFraction.Whole))
+    music.playTone(Note.E5, music.beat(BeatFraction.Whole))
+    music.playTone(Note.C5, music.beat(BeatFraction.Whole))
+    music.playTone(Note.A4, music.beat(BeatFraction.Whole))
+    music.playTone(Note.A4, music.beat(BeatFraction.Whole))*/
 }
 
 ///// Piece object creation //////////////////////////////////////////////
@@ -306,35 +443,40 @@ class Piece {
 ///// CONTROLS //////////////////////////////////////////////
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     currentPiece.rotCW()
-    music.playTone(Note.A5, BeatFraction.Whole)
+    music.playTone(Note.A, 50)
+    music.playTone(Note.B, 50)
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     currentPiece.rotCCW()
-    music.playTone(Note.B5, BeatFraction.Whole)
+    music.playTone(Note.B, 50)
+    music.playTone(Note.A, 50)
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+    music.playTone(Note.A, 50)
     currentPiece.moveLeft()
-    music.playTone(Note.C, BeatFraction.Eighth)
 })
 controller.left.onEvent(ControllerButtonEvent.Repeated, function () {
     currentPiece.moveLeft()
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
+    music.playTone(Note.A, 50)
     currentPiece.moveRight()
-    music.playTone(Note.C, BeatFraction.Eighth)
 })
 controller.right.onEvent(ControllerButtonEvent.Repeated, function () {
     currentPiece.moveRight()
 })
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
+    music.playTone(Note.B, 50)
     currentPiece.moveDown()
 })
 controller.down.onEvent(ControllerButtonEvent.Repeated, function () {
     currentPiece.moveDown()
-    if (currentPiece.y > 3) {info.changeScoreBy(1)}
+    if (currentPiece.y > 1) { dropPoints++ }       
 })
 
 ////////////////////////////////////////////////////
+
+
 let grid: number[][] = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -362,6 +504,7 @@ let speed: number = 1000
 let level: number = 0
 let nbLines: number = 0
 let bestScore: number = 0
+let dropPoints: number = 0
 if (settings.exists('Score')) {
     bestScore = settings.readNumber('Score')
 }
@@ -512,17 +655,17 @@ let nextPiece = new Piece()
 let currentPiece: Piece
 newPiece()
 
-/*game.onUpdateInterval(speed, function () {
-})*/
-
 game.onUpdate(function () {
     if (game.runtime() - currentTime > speed) {
         if (currentPiece.collision(0, 1)) {
             if (currentPiece.y > 0) {
+                music.playTone(Note.C, 100)
                 currentPiece.lock()
+                info.changeScoreBy(Math.floor(dropPoints / (10-level)))
                 checkLine()
                 levelUp()
                 newPiece()
+                dropPoints = 0
             } else {
                 if (bestScore < info.score()) {
                     settings.writeNumber('Score', info.score())
