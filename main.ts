@@ -126,17 +126,17 @@ scene.setBackgroundImage(img`
     1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 `)
 
-music.playMelody("E5:4 B4:2 C5:2 D5:4 C5:2 B4:2 A4:4", 150)
-/*music.playMelody("A4:2 C5:2 E5:4 D5:2 C5:2 B4:8", 150)
+/*music.playMelody("E5:4 B4:2 C5:2 D5:4 C5:2 B4:2 A4:4", 150)
+music.playMelody("A4:2 C5:2 E5:4 D5:2 C5:2 B4:8", 150)
 music.playMelody("C5:2 D5:4 E5:4 C5:4 A4:4 A4:4", 150)*/
 game.waitAnyButton()
 game.setDialogFrame(img`
     1 1 1
     1 f 1
     1 1 1
- `)
+`)
 game.setDialogTextColor(1)
-game.showLongText("Tetris pour les nostalgiques. Appuies sur A pour démarrer", DialogLayout.Bottom)
+game.showLongText("Tetris pour les nostalgiques. Appuie sur A pour démarrer", DialogLayout.Bottom)
 ///////////////////////////////////////////////////////////
 
 const ROW = 19    // Grid ..
@@ -244,14 +244,18 @@ function checkLine() {
 }
 // Level up
 function levelUp() {
-    if (level < Math.floor(nbLines / 10)) {
+    if (level - startLevel < Math.floor(nbLines / 10)) {
         level++
         music.playTone(Note.E, 50)
         music.playTone(Note.F, 50)
         music.playTone(Note.E, 50)
         bgPicture.fillRect(130, 20, 20, 8, BOARD)
         bgPicture.print(level.toString(), 130, 20, 15)
-        speed = 1000 - (level * 100)
+        if (level < 9) {
+            speed = 1000 - (level * 100)
+        } else {
+            speed = 200 - (level * 10)
+        }
         info.changeScoreBy(levelPoints * level)
     }
 }
@@ -267,31 +271,6 @@ function newPiece() {
     nextPiece.draw()
 }
 
-function gameMusic() {
-    //E B C D C B A - A C E D C B - C D E C A A
-    music.setTempo(150)
-    music.playTone(Note.E5, music.beat(BeatFraction.Whole))
-    music.playTone(Note.B4, music.beat(BeatFraction.Half))
-    music.playTone(Note.C5, music.beat(BeatFraction.Half))
-    music.playTone(Note.D5, music.beat(BeatFraction.Whole))
-    music.playTone(Note.C5, music.beat(BeatFraction.Half))
-    music.playTone(Note.B4, music.beat(BeatFraction.Half))
-    music.playTone(Note.A4, music.beat(BeatFraction.Whole))
-
-    /*music.playTone(Note.A4, music.beat(BeatFraction.Half))
-    music.playTone(Note.C5, music.beat(BeatFraction.Half))
-    music.playTone(Note.E5, music.beat(BeatFraction.Whole))
-    music.playTone(Note.D5, music.beat(BeatFraction.Half))
-    music.playTone(Note.C5, music.beat(BeatFraction.Half))
-    music.playTone(Note.B4, music.beat(BeatFraction.Double))
-
-    music.playTone(Note.C5, music.beat(BeatFraction.Half))
-    music.playTone(Note.D5, music.beat(BeatFraction.Whole))
-    music.playTone(Note.E5, music.beat(BeatFraction.Whole))
-    music.playTone(Note.C5, music.beat(BeatFraction.Whole))
-    music.playTone(Note.A4, music.beat(BeatFraction.Whole))
-    music.playTone(Note.A4, music.beat(BeatFraction.Whole))*/
-}
 
 ///// Piece object creation //////////////////////////////////////////////
 class Piece {
@@ -523,8 +502,15 @@ let grid: number[][] = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ]
 let bgPicture: Image = null
-let speed: number = 1000
-let level: number = 0
+let startLevel: number = 8
+let level: number = startLevel
+let speed: number
+if (level < 9) {
+    speed = 1000 - (level * 100)
+} else {
+    speed = 1000 - (level * 10)
+}
+//let speed: number = 1000
 let nbLines: number = 0
 let bestScore: number = 0
 let dropPoints: number = 0
