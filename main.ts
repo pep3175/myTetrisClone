@@ -1,9 +1,16 @@
-let palBuf: Buffer = hex`000000100820511e43aeb5bd4d80c9054494ffa9a9eb6c82e93841ffe947f1892d823e2c5ae1501e8a4c7d3ebfffd19d`
+let palBuf: Buffer = hex`000000ffffff7b68eeff93c4eee8aafff609249ca378dc52003fad87f2ff8e2ec4a4839fdda0dde5cdc491463d000000`
+image.setPalette(palBuf)
+let startLevel: number = 10
+
+while(startLevel > 9) {
+    startLevel = game.askForNumber("Niveau 0 - 9")
+}
+palBuf = hex`000000100820511e43aeb5bd4d80c9054494ffa9a9eb6c82e93841ffe947f1892d823e2c5ae1501e8a4c7d3ebfffd19d`
 image.setPalette(palBuf)
 
 ///// INTRO //////////////////////////////////////////////
 music.setVolume(10)
-scene.setBackgroundImage(img`
+let menuPicture: Image = img`
     1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
     1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
     1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
@@ -124,19 +131,31 @@ scene.setBackgroundImage(img`
     1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
     1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
     1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-`)
-
-/*music.playMelody("E5:4 B4:2 C5:2 D5:4 C5:2 B4:2 A4:4", 150)
-music.playMelody("A4:2 C5:2 E5:4 D5:2 C5:2 B4:8", 150)
-music.playMelody("C5:2 D5:4 E5:4 C5:4 A4:4 A4:4", 150)*/
-game.waitAnyButton()
+`
+//let displayMenu: boolean = true
+scene.setBackgroundImage(menuPicture)
 game.setDialogFrame(img`
     1 1 1
     1 f 1
     1 1 1
 `)
 game.setDialogTextColor(1)
-game.showLongText("Tetris pour les nostalgiques. Appuie sur A pour démarrer", DialogLayout.Bottom)
+
+
+menuPicture.print("Niveau", 20, 100, 15)
+menuPicture.print(startLevel.toString(), 60, 100, 15)
+/*music.playMelody("E5:4 B4:2 C5:2 D5:4 C5:2 B4:2 A4:4", 150)
+music.playMelody("A4:2 C5:2 E5:4 D5:2 C5:2 B4:8", 150)
+music.playMelody("C5:2 D5:4 E5:4 C5:4 A4:4 A4:4", 150)*/
+/*controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    displayMenu = false
+})*/
+
+/*while (displayMenu == true) {
+}*/
+
+game.waitAnyButton()
+/*game.showLongText("Tetris pour les nostalgiques. Appuie sur A pour démarrer", DialogLayout.Bottom)*/
 ///////////////////////////////////////////////////////////
 
 const ROW = 19    // Grid ..
@@ -225,6 +244,7 @@ function checkLine() {
             }
             if (line == true) {
                 nbLines++
+                //nbLines += 5
                 nbLinesCompleted++
                 music.playTone(Note.E, 50)
                 bgPicture.fillRect(130, 35, 20, 8, BOARD)
@@ -251,13 +271,18 @@ function levelUp() {
         music.playTone(Note.E, 50)
         bgPicture.fillRect(130, 20, 20, 8, BOARD)
         bgPicture.print(level.toString(), 130, 20, 15)
-        if (level < 9) {
-            speed = 1000 - (level * 100)
-        } else {
-            speed = 200 - (level * 10)
-        }
+        speed = setSpeed(level)
         info.changeScoreBy(levelPoints * level)
     }
+}
+function setSpeed(lvl: number) {
+    let spd: number
+    if (lvl < 9) {
+        spd = 1000 - (lvl * 100)
+    } else {
+        spd = 200 - ((lvl - 8) * 20)
+    }
+    return spd
 }
 // Create a new piece
 function newPiece() {
@@ -502,15 +527,10 @@ let grid: number[][] = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ]
 let bgPicture: Image = null
-let startLevel: number = 8
 let level: number = startLevel
 let speed: number
-if (level < 9) {
-    speed = 1000 - (level * 100)
-} else {
-    speed = 1000 - (level * 10)
-}
-//let speed: number = 1000
+speed = setSpeed(level)
+
 let nbLines: number = 0
 let bestScore: number = 0
 let dropPoints: number = 0
