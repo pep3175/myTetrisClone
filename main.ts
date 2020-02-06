@@ -1,11 +1,4 @@
-let palBuf: Buffer = hex`000000ffffff7b68eeff93c4eee8aafff609249ca378dc52003fad87f2ff8e2ec4a4839fdda0dde5cdc491463d000000`
-image.setPalette(palBuf)
-let startLevel: number = 10
-
-while(startLevel > 9) {
-    startLevel = game.askForNumber("Niveau 0 - 9")
-}
-palBuf = hex`000000100820511e43aeb5bd4d80c9054494ffa9a9eb6c82e93841ffe947f1892d823e2c5ae1501e8a4c7d3ebfffd19d`
+let palBuf: Buffer = hex`000000100820511e43aeb5bd4d80c9054494ffa9a9eb6c82e93841ffe947f1892d823e2c5ae1501e8a4c7d3ebfffd19d`
 image.setPalette(palBuf)
 
 ///// INTRO //////////////////////////////////////////////
@@ -141,11 +134,15 @@ game.setDialogFrame(img`
 `)
 game.setDialogTextColor(1)
 
-
-menuPicture.print("Niveau", 20, 100, 15)
-menuPicture.print(startLevel.toString(), 60, 100, 15)
-/*music.playMelody("E5:4 B4:2 C5:2 D5:4 C5:2 B4:2 A4:4", 150)
-music.playMelody("A4:2 C5:2 E5:4 D5:2 C5:2 B4:8", 150)
+let bestScore: number = 0
+if (settings.exists('Score')) {
+    bestScore = settings.readNumber('Score')
+}
+//menuPicture.print("Niveau", 20, 100, 15)
+//menuPicture.print(startLevel.toString(), 60, 100, 15)"Meilleur score : " + bestScore.toString()
+menuPicture.print("Top : " + bestScore.toString(), 20, 100, 15)
+music.playMelody("E5:4 B4:2 C5:2 D5:4 C5:2 B4:2 A4:4", 150)
+/*music.playMelody("A4:2 C5:2 E5:4 D5:2 C5:2 B4:8", 150)
 music.playMelody("C5:2 D5:4 E5:4 C5:4 A4:4 A4:4", 150)*/
 /*controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     displayMenu = false
@@ -154,8 +151,18 @@ music.playMelody("C5:2 D5:4 E5:4 C5:4 A4:4 A4:4", 150)*/
 /*while (displayMenu == true) {
 }*/
 
-game.waitAnyButton()
+//game.waitAnyButton()
 /*game.showLongText("Tetris pour les nostalgiques. Appuie sur A pour démarrer", DialogLayout.Bottom)*/
+palBuf = hex`000000ffffff7b68eeff93c4eee8aafff609249ca378dc52003fad87f2ff8e2ec4a4839fdda0dde5cdc491463d000000`
+image.setPalette(palBuf)
+let startLevel: number = 10
+
+while (!( (startLevel >= 0) && (startLevel <= 9) )) {
+    startLevel = game.askForNumber("Niveau 0 - 9")
+}
+palBuf = hex`000000100820511e43aeb5bd4d80c9054494ffa9a9eb6c82e93841ffe947f1892d823e2c5ae1501e8a4c7d3ebfffd19d`
+image.setPalette(palBuf)
+
 ///////////////////////////////////////////////////////////
 
 const ROW = 19    // Grid ..
@@ -259,7 +266,7 @@ function checkLine() {
             }
         }
     }
-    info.changeScoreBy(linePoints*(Math.exp(nbLinesCompleted)-1))
+    info.changeScoreBy(linePoints*(Math.exp(nbLinesCompleted)-1)*(level+1))
     drawGrid()
 }
 // Level up
@@ -272,15 +279,15 @@ function levelUp() {
         bgPicture.fillRect(130, 20, 20, 8, BOARD)
         bgPicture.print(level.toString(), 130, 20, 15)
         speed = setSpeed(level)
-        info.changeScoreBy(levelPoints * level)
+        info.changeScoreBy(levelPoints * (level + 1))
     }
 }
 function setSpeed(lvl: number) {
     let spd: number
-    if (lvl < 9) {
+    if (lvl <= 8) {
         spd = 1000 - (lvl * 100)
     } else {
-        spd = 200 - ((lvl - 8) * 20)
+        spd = 150
     }
     return spd
 }
@@ -495,7 +502,7 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
         power.deepSleep()
         //game.reset()
     } else {
-        game.splash("PAUSE", "Meilleur score : " + bestScore.toString())
+        game.splash("PAUSE", "A battre : " + bestScore.toString())
     }
 })
 
@@ -532,11 +539,8 @@ let speed: number
 speed = setSpeed(level)
 
 let nbLines: number = 0
-let bestScore: number = 0
 let dropPoints: number = 0
-if (settings.exists('Score')) {
-    bestScore = settings.readNumber('Score')
-}
+
 let sysPause: boolean = false
 
 bgPicture = img`
@@ -691,7 +695,7 @@ game.onUpdate(function () {
             if (currentPiece.y > 0) {
                 music.playTone(Note.C, 100)
                 currentPiece.lock()
-                info.changeScoreBy(Math.floor(dropPoints / (10-level)))
+                info.changeScoreBy(Math.floor(dropPoints / 10) * (level + 1))
                 checkLine()
                 levelUp()
                 newPiece()
