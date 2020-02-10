@@ -689,6 +689,7 @@ newPiece()
 
 game.onUpdate(function () {
     if ((game.runtime() - currentTime > speed)) {
+        currentTime = game.runtime()
         if (currentPiece.collision(0, 1)) {
             if (currentPiece.y > 0) {
                 music.playTone(Note.C, 100)
@@ -707,6 +708,5 @@ game.onUpdate(function () {
         } else {
             currentPiece.moveDown()
         }
-    currentTime = game.runtime()
     }
 })
