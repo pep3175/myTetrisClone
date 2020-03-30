@@ -125,7 +125,6 @@ let menuPicture: Image = img`
     1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
     1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 `
-//let displayMenu: boolean = true
 scene.setBackgroundImage(menuPicture)
 game.setDialogFrame(img`
     1 1 1
@@ -139,16 +138,13 @@ if (settings.exists('Score')) {
     bestScore = settings.readNumber('Score')
 }
 menuPicture.print("Top : " + bestScore.toString(), 20, 100, 15)
-music.playMelody("E5:4 B4:2 C5:2 D5:4 C5:2 B4:2 A4:4", 150)
-/*music.playMelody("A4:2 C5:2 E5:4 D5:2 C5:2 B4:8", 150)
+
+/*music.playMelody("E5:4 B4:2 C5:2 D5:4 C5:2 B4:2 A4:4", 150)
+music.playMelody("A4:2 C5:2 E5:4 D5:2 C5:2 B4:8", 150)
 music.playMelody("C5:2 D5:4 E5:4 C5:4 A4:4 A4:4", 150)*/
 
-/*displayMenu = false
-
-while (displayMenu == true) {
-}*/
-
-//game.waitAnyButton()
+game.waitAnyButton()
+menuPicture = undefined
 
 palBuf = hex`000000ffffff7b68eeff93c4eee8aafff609249ca378dc52003fad87f2ff8e2ec4a4839fdda0dde5cdc491463d000000`
 image.setPalette(palBuf)
@@ -249,7 +245,6 @@ function checkLine() {
             }
             if (line == true) {
                 nbLines++
-                //nbLines += 5
                 nbLinesCompleted++
                 music.playTone(Note.E, 50)
                 bgPicture.fillRect(130, 35, 20, 8, BOARD)
@@ -271,9 +266,9 @@ function checkLine() {
 function levelUp() {
     if (level - startLevel < Math.floor(nbLines / 10)) {
         level++
-        music.playTone(Note.E, 50)
+        /*music.playTone(Note.E, 50)
         music.playTone(Note.F, 50)
-        music.playTone(Note.E, 50)
+        music.playTone(Note.E, 50)*/
         bgPicture.fillRect(130, 20, 20, 8, BOARD)
         bgPicture.print(level.toString(), 130, 20, 15)
         speed = setSpeed(level)
@@ -498,7 +493,6 @@ controller.down.onEvent(ControllerButtonEvent.Repeated, function () {
 controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
     if (controller.up.isPressed()) {
         power.deepSleep()
-        //game.reset()
     } else {
         game.splash("PAUSE", "A battre : " + bestScore.toString())
     }
@@ -506,7 +500,6 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
 
 ////////////////////////////////////////////////////
 
-//gameMusic()
 music.setVolume(32)
 
 let grid: number[][] = [
@@ -700,10 +693,17 @@ game.onUpdate(function () {
                 newPiece()
                 dropPoints = 0
             } else {
+                grid = undefined
+                bgPicture = undefined
+                nextPiece = undefined
+                currentPiece = undefined
+
                 if (bestScore < info.score()) {
                     settings.writeNumber('Score', info.score())
                 }
-                game.over(false)
+                //game.over(false)
+                game.splash("PERDU", "Score : " + info.score())
+                game.reset()
             }
         } else {
             currentPiece.moveDown()
