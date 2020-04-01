@@ -149,7 +149,7 @@ game.waitAnyButton()
 menuPicture = undefined
 
 //// Level & Difficulty selection /////////
-palBuf = hex`000000ffffff7b68eeff93c4eee8aafff609249ca378dc52003fad87f2ff8e2ec4a4839fdda0dde5cdc491463d000000`
+palBuf = hex`100820ffd19d7b68ee511e43eee8aaeb6c82249ca3eb6c82003fad87f2ff8e2ec4a4839fdda0dde5cdc491463d000000`
 image.setPalette(palBuf)
 
 let startLevel: number = 10
