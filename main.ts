@@ -1,8 +1,18 @@
 let palBuf: Buffer = hex`000000100820511e43aeb5bd4d80c9054494ffa9a9eb6c82e93841ffe947f1892d823e2c5ae1501e8a4c7d3ebfffd19d`
 image.setPalette(palBuf)
 
+let bestScore: number = 0
+if (settings.exists('Score')) {
+    bestScore = settings.readNumber('Score')
+}
+game.setDialogFrame(img`
+    1 1 1
+    1 f 1
+    1 1 1
+`)
+game.setDialogTextColor(1)
+
 ///// INTRO //////////////////////////////////////////////
-music.setVolume(10)
 let menuPicture: Image = img`
     1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
     1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
@@ -126,32 +136,29 @@ let menuPicture: Image = img`
     1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 `
 scene.setBackgroundImage(menuPicture)
-game.setDialogFrame(img`
-    1 1 1
-    1 f 1
-    1 1 1
-`)
-game.setDialogTextColor(1)
-
-let bestScore: number = 0
-if (settings.exists('Score')) {
-    bestScore = settings.readNumber('Score')
-}
 menuPicture.print("Top : " + bestScore.toString(), 20, 100, 15)
 
-/*music.playMelody("E5:4 B4:2 C5:2 D5:4 C5:2 B4:2 A4:4", 150)
+/*
+music.setVolume(10)
+music.playMelody("E5:4 B4:2 C5:2 D5:4 C5:2 B4:2 A4:4", 150)
 music.playMelody("A4:2 C5:2 E5:4 D5:2 C5:2 B4:8", 150)
-music.playMelody("C5:2 D5:4 E5:4 C5:4 A4:4 A4:4", 150)*/
+music.playMelody("C5:2 D5:4 E5:4 C5:4 A4:4 A4:4", 150)
+*/
 
 game.waitAnyButton()
 menuPicture = undefined
 
+//// Level & Difficulty selection /////////
 palBuf = hex`000000ffffff7b68eeff93c4eee8aafff609249ca378dc52003fad87f2ff8e2ec4a4839fdda0dde5cdc491463d000000`
 image.setPalette(palBuf)
 
 let startLevel: number = 10
 while (!( (startLevel >= 0) && (startLevel <= 9) )) {
     startLevel = game.askForNumber("Niveau 0 - 9")
+}
+let difficulty: number = 6
+while (!((difficulty >= 0) && (difficulty <= 5))) {
+    difficulty = game.askForNumber("Difficulté 0 - 5")
 }
 
 palBuf = hex`000000100820511e43aeb5bd4d80c9054494ffa9a9eb6c82e93841ffe947f1892d823e2c5ae1501e8a4c7d3ebfffd19d`
@@ -259,7 +266,7 @@ function checkLine() {
             }
         }
     }
-    info.changeScoreBy(linePoints*(Math.exp(nbLinesCompleted)-1)*(level+1))
+    info.changeScoreBy(linePoints * (nbLinesCompleted) * (level + difficulty + 1))
     drawGrid()
 }
 // Level up
@@ -272,7 +279,7 @@ function levelUp() {
         bgPicture.fillRect(130, 20, 20, 8, BOARD)
         bgPicture.print(level.toString(), 130, 20, 15)
         speed = setSpeed(level)
-        info.changeScoreBy(levelPoints * (level + 1))
+        info.changeScoreBy(levelPoints * (level + difficulty + 1))
     }
 }
 function setSpeed(lvl: number) {
@@ -491,11 +498,15 @@ controller.down.onEvent(ControllerButtonEvent.Repeated, function () {
     if (currentPiece.y > 1) { dropPoints++ }       
 })
 controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (controller.up.isPressed()) {
+/*    if (controller.up.isPressed()) {
         power.deepSleep()
     } else {
         game.splash("PAUSE", "A battre : " + bestScore.toString())
-    }
+    }*/
+    power.deepSleep()
+})
+controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
+    game.splash("PAUSE", "A battre : " + bestScore.toString())
 })
 
 ////////////////////////////////////////////////////
@@ -531,8 +542,6 @@ speed = setSpeed(level)
 
 let nbLines: number = 0
 let dropPoints: number = 0
-
-let sysPause: boolean = false
 
 bgPicture = img`
     2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 7 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 7 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
@@ -670,6 +679,12 @@ bgPicture.print(nbLines.toString(), 130, 35, 15)
 for (let r = 0; r <= ROW; r++) {
     for (let c = 0; c <= COL; c++) {
         grid[r][c] = VACANT
+    }
+}
+// Create difficulty
+for (let r = ROW; r >= (ROW - 2*difficulty + 1); r--) {
+    for (let c = 0; c <= COL; c++) {
+        grid[r][c] = Math.pickRandom([VACANT, COLOR[Math.randomRange(0, 6)]])
     }
 }
 drawGrid()
