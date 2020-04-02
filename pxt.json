@@ -1,14 +1,18 @@
 {
     "name": "MyTetrisClone",
+    "version": "1.0.0",
+    "description": "",
     "dependencies": {
         "device": "*"
     },
-    "description": "",
     "files": [
         "main.blocks",
         "main.ts",
         "README.md",
         "tetrominoes.ts"
+    ],
+    "testFiles": [
+        "test.ts"
     ],
     "preferredEditor": "tsprj",
     "palette": [
@@ -28,9 +32,5 @@
         "#1e8a4c",
         "#7d3ebf",
         "#ffd19d"
-    ],
-    "testFiles": [
-        "test.ts"
-    ],
-    "version": "1.0.0"
+    ]
 }
