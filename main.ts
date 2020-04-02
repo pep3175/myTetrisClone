@@ -1,16 +1,19 @@
+controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
+    power.deepSleep()
+})
 let palBuf: Buffer = hex`000000100820511e43aeb5bd4d80c9054494ffa9a9eb6c82e93841ffe947f1892d823e2c5ae1501e8a4c7d3ebfffd19d`
 image.setPalette(palBuf)
-
-let bestScore: number = 0
-if (settings.exists('Score')) {
-    bestScore = settings.readNumber('Score')
-}
 game.setDialogFrame(img`
     1 1 1
     1 f 1
     1 1 1
 `)
 game.setDialogTextColor(1)
+
+let bestScore: number = 0
+if (settings.exists('Score')) {
+    bestScore = settings.readNumber('Score')
+}
 
 ///// INTRO //////////////////////////////////////////////
 let menuPicture: Image = img`
@@ -496,14 +499,6 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
 controller.down.onEvent(ControllerButtonEvent.Repeated, function () {
     currentPiece.moveDown()
     if (currentPiece.y > 1) { dropPoints++ }       
-})
-controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
-/*    if (controller.up.isPressed()) {
-        power.deepSleep()
-    } else {
-        game.splash("PAUSE", "A battre : " + bestScore.toString())
-    }*/
-    power.deepSleep()
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     game.splash("PAUSE", "A battre : " + bestScore.toString())
