@@ -332,22 +332,38 @@ function updateCursorPosition() {
 function increaseLvlChoice() {
     if (menuSelection == 0) {
         lvlChoice.image.fill(2)
-        startLevel++
+        if (startLevel < 9) {
+            startLevel++
+        } else {
+            startLevel = 0
+        }
         lvlChoice.image.print(startLevel.toString(), 2, 2, 15)
     } else {
         diffChoice.image.fill(2)
-        difficulty++
+        if (difficulty < 5) {
+            difficulty++
+        } else {
+            difficulty = 0
+        }
         diffChoice.image.print(difficulty.toString(), 2, 2, 15)
     }
 }
 function decreaseLvlChoice() {
     if (menuSelection == 0) {
         lvlChoice.image.fill(2)
-        startLevel--
+        if (startLevel > 0) {
+            startLevel--
+        } else {
+            startLevel = 9
+        }
         lvlChoice.image.print(startLevel.toString(), 2, 2, 15)
     } else {
         diffChoice.image.fill(2)
-        difficulty--
+        if (difficulty > 0) {
+            difficulty--
+        } else {
+            difficulty = 5
+        }
         diffChoice.image.print(difficulty.toString(), 2, 2, 15)
     }
 }
