@@ -80,8 +80,20 @@ let nextPiece: Piece
 let currentPiece: Piece
 
 ///// CONTROLS //////////////////////////////////////////////
-controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
+controller.menu.onEvent(ControllerButtonEvent.Repeated, function () {
     power.deepSleep()
+})
+controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
+    switch (gameMode) {
+        case GameMode.Game:
+            startPause()
+            break
+
+        case GameMode.Pause:
+            gameMode = GameMode.Game
+            drawGrid()
+            break
+    }   // switch (gameMode)
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     switch (gameMode) {
@@ -114,12 +126,12 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
             break
 
         case GameMode.Game:
-            startPause()
+            //startPause()
             break
 
         case GameMode.Pause:
-            gameMode = GameMode.Game
-            drawGrid()
+            //gameMode = GameMode.Game
+            //drawGrid()
             break
     }   // switch (gameMode)
 })
@@ -514,7 +526,7 @@ function startMenu() {
 function startGame() {
     gameMode = GameMode.Game
 
-    music.setVolume(32)
+    music.setVolume(255)
 
     level = startLevel
     speed = setSpeed(level)
@@ -648,7 +660,6 @@ function startGame() {
     bgPicture.print("Lignes", 90, 35, 15)
     bgPicture.print(nbLines.toString(), 130, 35, 15)
 
-
     // Create the grid with blank squares
     for (let r = 0; r <= ROW; r++) {
         for (let c = 0; c <= COL; c++) {
@@ -683,7 +694,13 @@ function startEnd() {
     if (bestScore < info.score()) {
         settings.writeNumber('Score', info.score())
     }
-    music.playTone(Note.A, 2000)
+
+    let endScreen = sprites.create(image.create(80, 40))
+    endScreen.image.fill(15)
+    endScreen.image.print("PERDU !", 22, 17, 1)
+    endScreen.top = 40
+    endScreen.left = 40
+
 }
 
 //Menu
